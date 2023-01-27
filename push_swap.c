@@ -16,28 +16,34 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-
-int main(int argc, char **argv)
+static int	free_all(stack *data)
 {
-    int *array;
-    int **stack_a;
-    int **stack_b;
-    int check;
+	if (data->array)
+		free(data->array);
+	if (data->stack_a)
+		free(data->stack_a);
+	if (data->stack_b)
+		free(data->stack_b);
+	return (data->error);
+}
 
-    if (argc < 2)
-        return (1);
-    array = &argc;
-    check = ft_init(&array, &stack_a, &stack_b, argv);
-    if (check != 0)
-    {
-        if (check == -1)
-            write(1, "Error\n", 6);
-        return (1);
-    }
-	sorting_algorithm(stack_a, stack_b);
-    for (int i = 0; i < argc - 1; i++)
-        printf("%i, ", (*stack_a)[i]);
-	free(array);
-	free(stack_a);
-	free(stack_b);
+int	main(int argc, char **argv)
+{
+	stack	data;
+
+	if (argc < 2)
+		return (1);
+	data.error = ft_init(&data, argv, argc);
+	if (data.error != 0)
+	{
+		if (data.error == -1)
+			write(1, "Error\n", 6);
+		return (1);
+	}
+	if (rename_values(data.array, data.tot_len, &(data.error)))
+		return (free_all(&data));
+	sorting_algorithm(&data);
+	for (int i = 0; i < argc - 1; i++)
+		printf("%i, ", *(data.stack_a)[i]);
+	return (free_all(&data));
 }

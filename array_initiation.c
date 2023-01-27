@@ -14,19 +14,18 @@
 #include <stdlib.h>
 #include <limits.h>
 
-static int    fill_both_stacks(int **arr, int ***stack_a, int ***stack_b, int argc)
+static int    fill_both_stacks(stack *data, int argc)
 {
 	int	i;
 
 	i = 0;
 	while (i < argc - 1)
 	{
-		(*stack_a)[i] = &((*arr)[i]);
-		(*stack_b)[i] = NULL;
+		(data->stack_a)[i] = &((data->array)[i]);
+		(data->stack_b)[i] = NULL;
 		i++;
 	}
-	(*stack_a)[i] = NULL;
-	(*stack_a)[i] = NULL;
+	(data->stack_a)[i] = NULL;
 	return (0);
 }
 
@@ -75,7 +74,7 @@ static int is_number(char *str)
 /* transfers the content of argv into the array, converting it from char to int */
 /* returns 1 if the input is invalid */
 
-static int fill_arr(int **arr, char **argv, int argc)
+static int fill_arr(int *arr, char **argv, int argc)
 {
 	int i;
 	int r;
@@ -89,11 +88,11 @@ static int fill_arr(int **arr, char **argv, int argc)
 		num = ft_atol(argv[i + 1]);
 		if (num > INT_MAX || num < INT_MIN)
 			return (1);
-		(*arr)[i] = num;
+		arr[i] = num;
 		r = 0;
 		while (r < i)
 		{
-			if ((*arr)[r] == (*arr)[i])
+			if (arr[r] == arr[i])
 				return (1);
 			r++;
 		}
@@ -105,33 +104,31 @@ static int fill_arr(int **arr, char **argv, int argc)
 /* mallocs all the arrays and arrays of arrays */
 /* returns 0 if no errors occurred, 1 if malloc failed, -1 if the input was was invalid */
 
-int ft_init(int **arr, int ***stack_a, int ***stack_b, char **argv)
+int ft_init(stack *data, char **argv, int argc)
 {
-	int argc;
-
-	argc = **arr;
-	*arr = (int *) malloc((argc - 1) * sizeof(int));
-	if (!*arr)
+	data->array = (int *) malloc((argc - 1) * sizeof(int));
+	if (!data->array)
 		return (1);
-	*stack_a = (int **) malloc ((argc) * sizeof(int*));
-	if (!*stack_a)
+	data->stack_a = (int **) malloc ((argc) * sizeof(int*));
+	if (!data->stack_a)
 	{
-        free(*arr);
-        return (1);
-	}
-	*stack_b = (int **) malloc ((argc) * sizeof(int*));
-	if (!stack_b)
-	{
-		free(*arr);
-		free(*stack_a);
+		free(data->array);
 		return (1);
 	}
-	if (fill_arr(arr, argv, argc))
+	data->stack_b = (int **) malloc ((argc) * sizeof(int*));
+	if (!data->stack_b)
 	{
-		free(*arr);
-		free(*stack_a);
-		free(*stack_b);
+		free(data->array);
+		free(data->stack_a);
+		return (1);
+	}
+	if (fill_arr(data->array, argv, argc))
+	{
+		free(data->array);
+		free(data->stack_a);
+		free(data->stack_b);
 		return (-1);
 	}
-	return (fill_both_stacks(arr, stack_a, stack_b, argc));
+	data->tot_len = argc - 1;
+	return (fill_both_stacks(data, argc));
 }
