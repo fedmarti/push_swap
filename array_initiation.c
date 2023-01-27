@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
-static int    fill_both_stacks(stack *data, int argc)
+static int    fill_both_stacks(t_data *data, int argc)
 {
 	int	i;
 
@@ -104,7 +104,7 @@ static int fill_arr(int *arr, char **argv, int argc)
 /* mallocs all the arrays and arrays of arrays */
 /* returns 0 if no errors occurred, 1 if malloc failed, -1 if the input was was invalid */
 
-int ft_init(stack *data, char **argv, int argc)
+int ft_init(t_data *data, char **argv, int argc)
 {
 	data->array = (int *) malloc((argc - 1) * sizeof(int));
 	if (!data->array)

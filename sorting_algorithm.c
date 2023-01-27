@@ -58,7 +58,7 @@ bool is_greater_than_previous(int **stack_a, int pos, int len)
 /* 	This doesn't apply if the node is of the lowest value*/
 /* it will instead check if it's preceded by the highest value one.*/
 /* 	The first node is compared with the last (pac-man effect)*/
-int first_oor(stack *data, int len)
+int first_oor(t_data *data, int len)
 {
 	int i;
 	int temp;
@@ -90,7 +90,7 @@ int first_oor(stack *data, int len)
 /* previous is 2 when it's supposed to be 4 */
 /* function returns false */
 
-enum sequence_type	end_typecheck(int **stack, int index, int side)
+enum e_sequence_type	end_typecheck(int **stack, int index, int side)
 {
 	index = adjacent_value_in_stack(stack, *(stack[index]), side);
 	if (adjacent_value_in_stack(stack, *(stack[index]), side) 
@@ -105,7 +105,7 @@ enum sequence_type	end_typecheck(int **stack, int index, int side)
 	return (Right_eos);
 } 
 
-enum sequence_type	in_sequence_subcheck(int **stack, node current)
+enum e_sequence_type	in_sequence_subcheck(int **stack, t_node current)
 {
 	if (current.next == current.index_of_next_value)
 		{
@@ -116,7 +116,7 @@ enum sequence_type	in_sequence_subcheck(int **stack, node current)
 	return (end_typecheck(stack, current.index, 1));
 }
 
-enum sequence_type	switch_subcheck(int **stack, node current)
+enum e_sequence_type	switch_subcheck(int **stack, t_node current)
 {
 	if (current.next != current.index_of_previous_value)
 		return (To_be_switched_l);
@@ -125,13 +125,13 @@ enum sequence_type	switch_subcheck(int **stack, node current)
 	return (To_be_switched_b);
 }
 
-//enum sequence_type{Not_in_sequence, Sequence_stopper, To_be_switched_l,
+//enum e_sequence_type{Not_in_sequence, Sequence_stopper, To_be_switched_l,
 // To_be_switched_r, To_be_switched_b, 
 // Left_eois, Right_eois, Left_eos, Right_eos, In_sequence};
 
-node	sequence_check(int **stack, int index)
+t_node	sequence_check(int **stack, int index)
 {	
-	node	current;
+	t_node	current;
 
 	current.index = index;
 	current.next = next(stack, index);
@@ -156,12 +156,12 @@ node	sequence_check(int **stack, int index)
 // first out of sequence
 // order in which it searches 1->2->last->3->secondlast...
 
-node first_oos(stack *data)
+t_node first_oos(t_data *data)
 {
 	int		i;
 	int		j;
 	int		len;
-	node	current;
+	t_node	current;
 
 	i = 1;
 	j = 0;
@@ -183,7 +183,7 @@ node first_oos(stack *data)
 	return (current);
 }
 
-void	full_sequence_logic(stack *data, int target)
+void	full_sequence_logic(t_data *data, int target)
 {
 	if ((data->stack_b)[0])
 		target = find_of_value(data->stack_a, *((data->stack_b)[0]) + 1);
@@ -195,7 +195,7 @@ void	full_sequence_logic(stack *data, int target)
 		push_a(data->stack_a, data->stack_b);
 }
 
-void	swap_moves(stack *data, node current)
+void	swap_moves(t_data *data, t_node current)
 {
 	int	goal;
 
@@ -219,15 +219,15 @@ void	swap_moves(stack *data, node current)
 }
 
 /*
-enum sequence_type{Not_in_sequence, Sequence_stopper, To_be_switched_l,
+enum e_sequence_type{Not_in_sequence, Sequence_stopper, To_be_switched_l,
 	To_be_switched_r, To_be_switched_b, Left_eois, Right_eois, Left_eos,
 	Right_eos, In_sequence};
 */
 
 
-node	find_value(stack *data, int value)
+t_node	find_value(t_data *data, int value)
 {
-	node	node;
+	t_node	node;
 	int		i;
 
 	i = 0;
@@ -255,7 +255,7 @@ node	find_value(stack *data, int value)
 	return (node);
 }
 
-void	extraction_process(stack *data, int target, int goal, int amount)
+void	extraction_process(t_data *data, int target, int goal, int amount)
 {
 	if (target != 0)
 		rotate_to_goal(data->stack_a, target, 0);
@@ -266,7 +266,7 @@ void	extraction_process(stack *data, int target, int goal, int amount)
 	}
 }
 
-void	end_of_interrupted_sequence_moves(stack *data, node current)
+void	end_of_interrupted_sequence_moves(t_data *data, t_node current)
 {
 	int	direction;
 	int	goal;
@@ -293,7 +293,7 @@ void	end_of_interrupted_sequence_moves(stack *data, node current)
 	}
 }
 
-void	decide_move(stack *data, node current)
+void	decide_move(t_data *data, t_node current)
 {
 	if (current.type >= To_be_switched_l && current.type <= To_be_switched_b)
 		swap_moves(data, current);
@@ -309,11 +309,11 @@ void	decide_move(stack *data, node current)
 		;
 }
 
-void sorting_algorithm(stack *data)
+void sorting_algorithm(t_data *data)
 {
 	int		i;
 	int		len;
-	node	target;
+	t_node	target;
 
 	i = 0;
 	len = data->tot_len;

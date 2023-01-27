@@ -14,22 +14,32 @@
 # define PUSH_SWAP_H
 
 # include <stdbool.h>
- 
-enum sequence_type{Not_in_sequence, Sequence_stopper, To_be_switched_l,
-	To_be_switched_r, To_be_switched_b, Left_eois, Right_eois, Left_eos,
-	Right_eos, In_sequence};
 
-typedef struct nodes 
+enum	e_sequence_type
 {
-	enum sequence_type	type;
-	char				stack;
-	int					index;
-	int					value;
-	int					index_of_previous_value;
-	int					index_of_next_value;
-	int					previous;
-	int					next;
-}	node;
+	Not_in_sequence,
+	Sequence_stopper,
+	To_be_switched_l,
+	To_be_switched_r,
+	To_be_switched_b,
+	Left_eois,
+	Right_eois,
+	Left_eos,
+	Right_eos,
+	In_sequence
+};
+
+typedef struct nodes
+{
+	enum e_sequence_type	type;
+	char					stack;
+	int						index;
+	int						value;
+	int						index_of_previous_value;
+	int						index_of_next_value;
+	int						previous;
+	int						next;
+}	t_node;
 
 typedef struct stacks
 {
@@ -38,9 +48,9 @@ typedef struct stacks
 	int	*array;
 	int	tot_len;
 	int	error;
-}	stack;
+}	t_data;
 
-void	sorting_algorithm(stack *data);
+void	sorting_algorithm(t_data *data);
 int		stack_len(int **stack);
 int		rename_values(int *array, int len, int *error);
 int		rotate_stack(int **stack, int dir, int len);
@@ -54,7 +64,7 @@ void	push_b(int **stack_b, int **stack_a);
 void	rotate_a(int **stack, int dir);
 void	rotate_b(int **stack, int dir);
 void	rotate_both(int **stack_a, int **stack_b, int dir);
-int		ft_init(stack *data, char **argv, int argc);
+int		ft_init(t_data *data, char **argv, int argc);
 int		get_direction(int **stack, int target, int goal);
 int		get_distance(int **stack, int target, int goal);
 int		abs(int a);

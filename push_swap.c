@@ -16,7 +16,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-static int	free_all(stack *data)
+static int	free_all(t_data *data)
 {
 	if (data->array)
 		free(data->array);
@@ -29,7 +29,7 @@ static int	free_all(stack *data)
 
 int	main(int argc, char **argv)
 {
-	stack	data;
+	t_data	data;
 
 	if (argc < 2)
 		return (1);
