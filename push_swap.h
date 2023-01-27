@@ -22,6 +22,7 @@ enum	e_sequence_type
 	To_be_switched_l,
 	To_be_switched_r,
 	To_be_switched_b,
+	Injection_point,
 	Left_eois,
 	Right_eois,
 	Left_eos,

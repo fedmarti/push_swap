@@ -266,29 +266,36 @@ void	extraction_process(t_data *data, int target, int goal, int amount)
 	}
 }
 
-void	end_of_interrupted_sequence_moves(t_data *data, t_node current)
+int get_extraction_target(t_data *data, t_node current, int junk_start)
 {
-	int	direction;
-	int	goal;
 	int	junk_len;
-	int	seq_len;
 
-	direction = 1;
-	if (current.type == Left_eois)
-		direction = -1;
-	junk_len = get_junk_length(data->stack_a, current.index, direction);
-	seq_len = get_sequence_length(data->stack_a, current.index, -direction);
-	if (direction < 0)
-	{
-		if ((junk_len * 2) + get_distance(data->stack_a,
+	junk_len = get_;
+	((junk_len * 2) + get_distance(data->stack_a,
 		adjacent_n(data->stack_a, current.index, junk_len, direction), 0) 
 		> (seq_len * 2) + get_distance(data->stack_a, current.index, 0) 
 		+ get_distance(data->stack_a, current.index,
 		previous_value_in_stack(data->stack_a, current.value)))
-		{
+}
+
+void	l_end_of_interrupted_sequence_moves(t_data *data, t_node current)
+{
+	int	direction;
+	int	goal;
+	int	junk_start;
+	int	seq_len;
+	int	extraction_target;
+
+	direction = -1;
+	junk_start = next(data->stack_a, previous_value_in_stack(data->stack_a, current.value));
+	seq_len = get_sequence_length(data->stack_a, current.index, 1);
+	
+		extraction_target = get_extraction_target(data, current, junk_start);
+		if (extraction_target == current.index)
 			extraction_process(data, current.index, previous_value_in_stack(data->stack_a, current.value), seq_len);
-		}
-		if ()
+		else
+			extraction_process(data, )
+		
 		
 	}
 }
