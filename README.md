@@ -62,7 +62,7 @@ following operations at your disposal:
 
 ---
 
-Some odd choices may be explaned by the required [Norm]([https://cdn.intra.42.fr/pdf/pdf/65482/en.subject.pdf](https://elearning.intra.42.fr/notions/the-norm/subnotions/norm-v3/pdfs/Norm%20V3)), some of its rules are 
+Some odd choices may be explaned by the required [Norm](https://elearning.intra.42.fr/notions/the-norm/subnotions/norm-v3/pdfs/Norm%20V3), some of its rules are 
 1. No global variables
 2. Always declare variables at the beginning of the function
 3. Don't assign values to variables on the same line as the declaration
