@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:57:54 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/01/26 16:57:57 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/03 22:34:03 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ int	find_est_sign_based(int **stack, int sign)
 
 int	find_lowest(int **stack)
 {
-	return(find_est_sign_based(stack, -1));
+	return (find_est_sign_based(stack, -1));
 }
 
 int	find_highest(int **stack)
 {
-	find_est_sign_based(stack, 1);
+	return (find_est_sign_based(stack, 1));
 }
-
+/*
 int	rotate_to_goal(int **stack, int target, int goal)
 {
-	int dir;
+	int	dir;
 
 	dir = get_direction(stack, target, 0);
 	if (dir)
@@ -69,3 +69,4 @@ int	get_sequence_length(int **stack, int index, int direction)
 	}
 	return (i);
 }
+*/

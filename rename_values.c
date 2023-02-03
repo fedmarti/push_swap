@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-static int	find_lowest(int *arr, int len)
+static int	arr_find_lowest(int *arr, int len)
 {
 	int	i;
 	int	pos;
@@ -81,7 +81,7 @@ int	rename_values(int *array, int len, int *error)
 		*error = 1;
 		return (1);
 	}
-	positions[0] = find_lowest(array, len);
+	positions[0] = arr_find_lowest(array, len);
 	i = 1;
 	while (i < len)
 	{

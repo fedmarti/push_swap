@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:19:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2022/11/22 22:26:38 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/03 23:17:14 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <stdbool.h>
+# include <unistd.h>
 
 enum	e_sequence_type
 {
@@ -85,5 +86,17 @@ int		get_sequence_length(int **stack, int index, int direction);
 int		adjacent_n(int **stack, int index, int amount, int direction);
 int		next_n(int **stack, int index, int amount);
 int		previous_n(int **stack, int index, int amount);
+bool	base_2_radix_sort(t_data *data);
+void	push_back(t_data *data);
+bool	is_sorted(int **stack, int len);
+int		sign(int a);
+int		abs(int a);
+void	quick_sort(t_data *data);
+void	solve_3(int **stack, int **ausiliary, char name);
+void	swap_name(int **stack, char name);
+void	push_name(int **stack, int **ausiliary, char name);
+int		max(int a, int b);
+int		min(int a, int b);
+void	barista_sort(t_data *data);
 
 #endif

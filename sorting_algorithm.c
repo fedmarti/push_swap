@@ -10,27 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+
 #include <limits.h>
 #include "push_swap.h"
-
-bool is_sorted(int **stack, int len)
-{
-	bool sorted;
-	int i;
-
-	i = 0;
-	sorted = true;
-	if (stack_len(stack) < len)
-		return (false);
-	while (i < len && sorted)
-	{
-		if (find_lowest(&(stack[i])) != 0)
-			sorted = false;
-		i++;
-	}
-	return (sorted);
-}
 
 bool is_greater_than_previous(int **stack_a, int pos, int len)
 {
@@ -316,6 +298,7 @@ void	decide_move(t_data *data, t_node current)
 		;
 }
 
+/*
 void sorting_algorithm(t_data *data)
 {
 	int		i;
@@ -333,4 +316,5 @@ void sorting_algorithm(t_data *data)
 			decide_move(data, target);
 	}
 }
- 
+ */
+

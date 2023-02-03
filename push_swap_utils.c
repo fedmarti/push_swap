@@ -17,15 +17,15 @@ int	stack_len(int **stack)
 	int	len;
 
 	len = 0;
-	while(stack[len] != NULL)
+	while (stack[len] != NULL)
 		len++;
 	return (len);
 }
 
 int	rotate_stack(int **stack, int dir, int len)
 {
-	int *temp;
-	int i;
+	int	*temp;
+	int	i;
 
 	if (len < 2)
 		return (1);
@@ -39,7 +39,7 @@ int	rotate_stack(int **stack, int dir, int len)
 		temp = stack[len - 1];
 		i = len - 1;
 	}
-	else 
+	else
 		return (1);
 	while (len-- > 1)
 	{
@@ -52,8 +52,8 @@ int	rotate_stack(int **stack, int dir, int len)
 
 int	swap_stack(int **stack)
 {
-	int *temp;
-	
+	int	*temp;
+
 	if (!stack[0] || !stack[1])
 		return (1);
 	temp = stack[0];
@@ -72,8 +72,13 @@ int	push_stack(int **stack_1, int **stack_2)
 	if (!*stack_1)
 		return (1);
 	len = stack_len(stack_2);
-	stack_2[len - 1] = *stack_1;
-	rotate_stack(stack_2, -1, len + 1);
+	if (len)
+	{
+		stack_2[len] = *stack_1;
+		rotate_stack(stack_2, -1, len + 1);
+	}
+	else
+		*stack_2 = *stack_1;
 	len = stack_len(stack_1);
 	rotate_stack(stack_1, 1, len);
 	stack_1[len - 1] = NULL;
@@ -85,11 +90,4 @@ int	abs(int a)
 	if (a < 0)
 		a = -a;
 	return (a);
-}
-
-int	sign(int a)
-{
-	if (a < 0)
-		return (-1);
-	return (1);
 }

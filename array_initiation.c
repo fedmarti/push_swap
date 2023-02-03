@@ -52,23 +52,23 @@ static int	ft_atol(const char *str)
 	return (num);
 }
 
-static int is_number(char *str)
+static int	is_number(char *str)
 {
 	int	phase;
 
 	phase = 0;
 
-    while (*str)
-    {
+	while (*str)
+	{
 		if (!phase && (*str != '-' && *str != '+' && *str != ' '))
 			phase++;
-        if (phase && (*str < '0' && *str > '9'))
-            return (0);
+		if (phase && (*str < '0' || *str > '9'))
+			return (0);
 		if (!phase && (*str == '-' || *str == '+'))
 			phase++;
-        str++;
-    }
-    return (1);
+		str++;
+	}
+	return (1);
 }
 
 /* transfers the content of argv into the array, converting it from char to int */

@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 20:06:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2022/11/22 02:54:17 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/03 23:15:42 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	main(int argc, char **argv)
 	}
 	if (rename_values(data.array, data.tot_len, &(data.error)))
 		return (free_all(&data));
-	sorting_algorithm(&data);
-	for (int i = 0; i < argc - 1; i++)
-		printf("%i, ", *(data.stack_a)[i]);
+	//sorting_algorithm(&data);
+	//quick_sort(&data);
+	barista_sort(&data);
 	return (free_all(&data));
 }
