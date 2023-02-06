@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:50:47 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/01/26 15:50:50 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:01:47 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	find_of_value(int **stack, int value)
 {
 	int i;
 
+	i = 0;
 	while (stack[i])
 	{
 		if (*(stack[i]) == value)
