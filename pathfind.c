@@ -6,17 +6,21 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:02:16 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/01/13 15:02:19 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/13 19:37:51 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+
 int	next(int **stack, int index)
-{
+{ /*
 	if (stack[index + 1])
 		return (index + 1);
 	return (0);
+	*/
+	(void) stack;
+	return (index);
 }
 
 int	previous(int **stack, int index)

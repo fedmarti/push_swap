@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:19:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/02/03 23:17:14 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:22:08 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	rotate_both(int **stack_a, int **stack_b, int dir);
 int		ft_init(t_data *data, char **argv, int argc);
 int		get_direction(int **stack, int target, int goal);
 int		get_distance(int **stack, int target, int goal);
-int		abs(int a);
 int		next(int **stack, int index);
 int		previous(int **stack, int index);
 int		adjacent(int **stack, int index, int sign);
@@ -92,11 +91,18 @@ bool	is_sorted(int **stack, int len);
 int		sign(int a);
 int		abs(int a);
 void	quick_sort(t_data *data);
-void	solve_3(int **stack, int **ausiliary, char name);
+void	solve_3(int **stack, char name);
 void	swap_name(int **stack, char name);
 void	push_name(int **stack, int **ausiliary, char name);
+void	rotate_name(int **stack, int dir, int len, char name);
 int		max(int a, int b);
 int		min(int a, int b);
 void	barista_sort(t_data *data);
+void	merge_sort(t_data *data);
+int		find_est_sign_based_size(int **stack, int sign, int size);
+int		find_highest_size(int **stack, int size);
+int		find_lowest_size(int **stack, int size);
+void	syncronized_rotation(t_data *data, int target_a, int target_b);
+void	rotate_to_goal_flag(t_data *data, int target, int goal, int flag);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:25:30 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/02/06 17:17:47 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:24:15 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	bubble_sort_dir(t_data *data, int dir, int goal)
 		i++;
 	}
 }
-
+/*
 void	double_cocktail_sort(t_data *data)
 {
 	int	goal;
@@ -102,7 +102,7 @@ void	merge(t_data *data)
 			rotate_a(data->stack_a, -1);
 	}
 
-}
+}*/
 
 void rotate_to_goal_flag(t_data *data, int target, int goal, int flag)
 {
@@ -130,7 +130,7 @@ void rotate_to_goal_flag(t_data *data, int target, int goal, int flag)
 	}
 }
 
-/*	*/
+
 
 void	syncronized_rotation(t_data *data, int target_a, int target_b)
 {
@@ -155,7 +155,7 @@ void	syncronized_rotation(t_data *data, int target_a, int target_b)
 	rotate_to_goal_flag(data, find_of_value(data->stack_a, target_val), 0, 1);
 	rotate_to_goal_flag(data, find_highest(data->stack_b), 0, -2);
 }
-
+/*
 void	store_highest_in_a(t_data *data)
 {
 	while (**data->stack_a < **data->stack_b)
@@ -193,4 +193,4 @@ void	barista_sort(t_data *data)
 	double_cocktail_sort(data);
 	prepare_for_merge(data);
 	merge(data);
-}
+}*/

@@ -1,6 +1,6 @@
 #  |  |  ___ \    \  |         |
-#  |  |     ) |  |\/ |   _  |  |  /   _ 
-# ___ __|  __/   |   |  (   |    <    __/ 
+#  |  |     ) |  |\/ |   _  |  |  /   _
+# ___ __|  __/   |   |  (   |    <    __/
 #    _|  _____| _|  _| \__,_| _|\_\ \___|
 #                              by jcluzet
 ################################################################################
@@ -9,24 +9,28 @@
 
 NAME        := push_swap
 CC        := gcc
-FLAGS    := -Wall -Wextra -Werror -g 
+FLAGS    := -Wall -Wextra -Werror -g
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
 
-SRCS        :=      ps_moves.c \
-                          array_initiation.c \
-                          push_swap_utils_2.c \
-                          pathfind_2.c \
-                          pathfind_3.c \
-                          push_swap.c \
-                          push_swap_utils.c \
-                          radix_sort.c \
-                          rename_values.c \
-                          pathfind.c \
-                          ps_moves_2.c \
-                          quick_sort.c \
-                          barista_sort.c       
+SRCS        :=  	push_swap.c \
+					array_initiation.c \
+					rename_values.c \
+					push_swap_utils.c \
+					push_swap_utils_2.c \
+					pathfind.c \
+					pathfind_2.c \
+					pathfind_3.c \
+					pathfind_4.c \
+					pathfind_5.c \
+					ps_moves.c \
+					ps_moves_2.c \
+					quick_sort.c \
+					merge_sort.c \
+					barista_sort.c \
+					radix_sort.c \
+					solve_low_n.c 
 
 OBJS        := $(SRCS:.c=.o)
 
@@ -66,5 +70,3 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean re
-
-

@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:57:54 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/02/03 22:34:03 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/07 14:51:40 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,24 @@ int	get_sequence_length(int **stack, int index, int direction)
 	return (i);
 }
 */
+
+int	find_est_sign_based_size(int **stack, int sign, int size)
+{
+	int	i;
+	int	est;
+
+	i = 1;
+	est = 0;
+	while (stack[i] && i < size)
+	{
+		if (*(stack[est]) * sign < *(stack[i]) * sign)
+			est = i;
+		i++;
+	}
+	return (est);
+}
+
+int	find_lowest_size(int **stack, int size)
+{
+	return (find_est_sign_based_size(stack, -1, size));
+}

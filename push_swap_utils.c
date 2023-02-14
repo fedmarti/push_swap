@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:08:49 by fedmarti          #+#    #+#             */
-/*   Updated: 2022/11/22 22:12:21 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:13:15 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	stack_len(int **stack)
 	int	len;
 
 	len = 0;
+/*	if (_stack == NULL)
+		return (len);*/
 	while (stack[len] != NULL)
 		len++;
 	return (len);

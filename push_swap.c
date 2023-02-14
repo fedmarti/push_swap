@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 20:06:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/02/06 18:16:39 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/02/07 16:22:24 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ int	main(int argc, char **argv)
 	}
 	if (rename_values(data.array, data.tot_len, &(data.error)))
 		return (free_all(&data));
+	
 	//sorting_algorithm(&data);
 	//quick_sort(&data);
-	//barista_sort(&data);
+	if (data.tot_len == 3)
+		solve_3(data.stack_a, 'a');
+	else
+		merge_sort(&data);
 	return (free_all(&data));
 }
