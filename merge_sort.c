@@ -114,6 +114,8 @@ int	store_est_in_stack(int **main, int **secondary, int dir, int size)
 			push_name(main, secondary, 'a' + (-sign(dir - 1)));
 			i++;
 		}
+		else
+			break ;
 	}
 	return (i);		 
 }
@@ -125,7 +127,10 @@ int	store_highest_in_a(t_data *data, int size)
 
 int	store_lowest_in_b(t_data *data, int size)
 {
-	return (store_est_in_stack(data->stack_b, data->stack_a, -1, size));
+	int	appended;
+
+	appended = store_est_in_stack(data->stack_b, data->stack_a, -1, size);
+	return (appended);
 }
 
 
@@ -137,13 +142,14 @@ int	prepare_for_merge_b(t_data *data, int size)
 	int	dist_a;
 	int	dist_b;
 
+	if (!*data->stack_b)
+		return (0);
 	target_a = find_lowest_size(data->stack_a, size);
 	target_b = find_lowest_size(data->stack_b, size);
-	if (*data->stack_b[target_b] > *data->stack_a[target_a])
-		target_b = previous(data->stack_b, target_b);
+	if (*data->stack_b[target_b] < *data->stack_a[target_a])
+		target_b = next(data->stack_b, target_b);
 	dist_a = get_distance(data->stack_a, 0, target_a);
 	dist_b = get_distance(data->stack_b, 0, target_b);
-
 	if (abs(dist_a) + abs(dist_b) < min(abs(dist_a), abs(dist_b)) 
 		+ abs(get_distance(data->stack_a, target_a, target_b)))
 	{
@@ -162,6 +168,8 @@ int	prepare_for_merge_a(t_data *data, int size)
 	int	dist_a;
 	int	dist_b;
 
+	if (!*data->stack_a)
+		return (0);
 	target_a = find_highest_size(data->stack_a, size);
 	target_b = find_highest_size(data->stack_b, size);
 	if (*data->stack_a[target_a] < *data->stack_b[target_b])
@@ -184,16 +192,14 @@ bool	merge_backtrack_check(int **main_s, int **secondary, int main_len, int dir)
 {
 	int	last_val;
 
-	(void) dir;
 	if (main_len <= 1)
 		return (true);
 	last_val = *main_s[previous(main_s, 0)];
-	if (**secondary > last_val)
+	if (**secondary * dir > last_val * dir)
 		return (true);
-	if (**main_s < last_val)
+	if (**main_s *dir < last_val * dir)
 		return (true);
 	return (false);
-
 }
 
 void	merge_size(int **main_s, int **secondary, int size, int dir)
@@ -213,12 +219,11 @@ void	merge_size(int **main_s, int **secondary, int size, int dir)
 		}
 		else if (*secondary)
 		{
-			if (**main_s * dir > **secondary * dir 
-			&& merge_backtrack_check(main_s, secondary, main_len, dir))
+			if (**main_s * dir > **secondary * dir && merge_backtrack_check(main_s, secondary, main_len, dir))
 			{
 				push_name(main_s, secondary, name_main);
 				main_len++;
-				size--;
+				size--; 
 			}
 			else
 				rotate_name(main_s, -1, main_len, name_main);
@@ -262,7 +267,10 @@ void	merge(t_data *data, int size, int parent_size, int child_num)
 		if (size == data->tot_len)
 			return ;
 		if (stack_len(data->stack_b) <= size)
-			merge_b(data, size);
+		{
+			temp =  prepare_for_merge_b(data, size);
+			merge_b(data, size - temp);
+		}
 		else
 		{
 			if (child_num == 2)
