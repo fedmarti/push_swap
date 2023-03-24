@@ -12,71 +12,16 @@
 
 #include "push_swap.h"
 
-//divide in sequences of 2/3
-
-//sort them
-
-//compare two adjacent sequences
-
-//higheset gets rotated, lowest gets pushed, when it's finished push all of b
-// keep track of the first and last node of the sequence
-
-
-/*
-int	get_distance_dir(int **stack, int target, int goal, int dir)
+typedef struct s_seq_tree
 {
-	int	distance;
-
-	distance = 0;
-	while (target != goal)
-	{
-		target = adjacent(stack, target, dir);
-		distance ++;
-	}
-	return (distance);
-}
-
-int	get_intermediate(int **stack, int start, int end)
-{
-	int	pivot;
-	int	dis;
-
-	dis = end - start;
-	if (dis > 3)
-		return (start + (dis - dis / 2));
-	return (0);
-}
-
-
-int	first_step(t_data *data)
-{
-	push_b(data->stack_b, data->stack_a);
-	push_b(data->stack_b, data->stack_a);
-	push_b(data->stack_b, data->stack_a);
-	solve_3(data->stack_b, data->stack_a, 'b');
-	push_a(data->stack_a, data->stack_b);
-	push_a(data->stack_a, data->stack_b);
-	push_a(data->stack_a, data->stack_b);
-	rotate_a(data->stack_a, 1);
-	rotate_a(data->stack_a, 1);
-	rotate_a(data->stack_a, 1);
-	return (3);
-}
-
-
-void	merge_2(int **main, int **secondary, char name)
-{
-	int	dir;
-
-	if (name == 'a')
-		dir = 1;
-	else 
-		dir == -1;
-	if (**main * dir > *main[1] * dir)
-		swap_name(main, name);
-} */
-
-int ii = 0;
+	struct s_seq_tree	*parent;
+	struct s_seq_tree	*child[2];
+	int					len;
+	int					head_val;
+	int					**stack;
+	char				stack_name;
+	int					child_n;
+}	t_tree_node;
 
 void	merge_2(int **stack, int size)
 {
@@ -269,33 +214,105 @@ void	repeat_push(int **main, int **secondary, void (*f)(int**,int**), int times)
 	}
 }
 
-void	merge(t_data *data, int size, int parent_size, int child_num)
+/*typedef struct s_seq_tree
 {
-	if (is_sequence_sorted(data->stack_a, size, 1))
+	struct s_seq_tree	*parent;
+	struct s_seq_tree	*chid[2];
+	int					len;
+	int					head_val;
+	int					**stack;
+	char				stack_name;
+	int					child_n;
+}	t_tree_node;
+*/
+
+t_tree_node	*tree_node_init(t_tree_node *parent, int child_n)
+{
+	t_tree_node *child;
+
+	child = malloc(sizeof(struct s_seq_tree));
+	if (!child)
+		return (NULL);
+	child->parent = parent;
+	child->child[0] = NULL;
+	child->child[1] = NULL;
+	if (child_n == 1)
 	{
-		if (size == data->tot_len)
-			return ;
-		if (child_num == 2)
-			merge_a(data, size, parent_size);
-		else
-			repeat_push(data->stack_b, data->stack_a, push_b, size);		
+		child->head_val = *parent->stack[0];
+		child->len = parent->len / 2;
 	}
 	else
 	{
-		if (size <= 2)
-			merge_2(data->stack_a, size);
-		else if (size == 3)
-			solve_3_any(data->stack_a, 'a');
-		else
-		{
-			merge(data, size / 2, size, 1);
- 			merge(data, size - (size / 2), size, 2);
-		}
-		merge(data, size, parent_size, child_num);
+		child->head_val = *parent->stack[parent->child[0]->len];
+		child->len = parent->len - parent->child[0]->len;
 	}
+	child->stack = parent->stack;
+	child->stack_name = parent->stack_name;
+	child->child_n = child_n;
+	return (child);
+}
+
+void	split_sequence(t_data *data, t_tree_node *sequence)
+{
+	sequence->child[0] = tree_node_init(sequence, 0);
+	if (!sequence->child[0])
+		return ;
+	sequence->child[1] = tree_node_init(sequence, 1);
+	if (!sequence->child[1])
+		return ;
+	merge(data, sequence->child[0]);
+	merge(data, sequence->child[1]);
+}
+
+void	sorted_seq_logic(t_tree_node *sequence)
+{
+	
+}
+
+void	merge(t_data *data, t_tree_node *sequence)
+{
+	if (is_sequence_sorted(sequence->stack, sequence->len,
+	 1 + (-2 * sequence->stack_name - 'a')))
+	{
+		if (sequence->parent == NULL)
+			return ;
+		sorted_seq_logic(sequence);		
+	}
+	else
+	{
+		if (sequence->len <= 2)
+			solve_2_any(sequence->stack, sequence->stack_name);
+		else if (sequence->len == 3)
+			solve_3_any(sequence->stack, sequence->stack_name);
+		else
+			split_sequence(data, sequence);
+		merge(data, sequence);
+	}
+}
+
+t_tree_node	*init_tree(t_data *data)
+{
+	t_tree_node *head;
+
+	head = malloc(sizeof(struct s_seq_tree));
+	if (!head)
+		return (NULL);
+	head->parent = NULL;
+	head->child[0] = NULL;
+	head->child[1] = NULL;
+	head->len = data->tot_len;
+	head->head_val = **data->stack_a;
+	head->stack_name = 'a';
+	head->child_n = 1;
+	return (head);
 }
 
 void	merge_sort(t_data *data)
 {
-	merge(data, data->tot_len, 0, 1);
+	t_tree_node	*tree_head;
+
+	tree_head = init_tree(data);
+	if (!tree_head)
+		return ;
+	merge(data, tree_head);
 }

@@ -30,7 +30,8 @@ SRCS        :=  	push_swap.c \
 					merge_sort.c \
 					barista_sort.c \
 					radix_sort.c \
-					solve_low_n.c 
+					solve_low_n.c \
+					solve_low_n_2.c
 
 OBJS        := $(SRCS:.c=.o)
 

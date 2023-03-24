@@ -104,5 +104,8 @@ int		find_highest_size(int **stack, int size);
 int		find_lowest_size(int **stack, int size);
 void	syncronized_rotation(t_data *data, int target_a, int target_b);
 void	rotate_to_goal_flag(t_data *data, int target, int goal, int flag);
+void	solve_3_any(int **stack, char name);
+void	init_triplet(int *triplet, int **stack);
+void	solve_2_any(int	**stack, char name);
 
 #endif

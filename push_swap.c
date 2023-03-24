@@ -42,12 +42,12 @@ int	main(int argc, char **argv)
 	}
 	if (rename_values(data.array, data.tot_len, &(data.error)))
 		return (free_all(&data));
-	
 	//sorting_algorithm(&data);
 	//quick_sort(&data);
 	if (data.tot_len == 3)
 		solve_3(data.stack_a, 'a');
 	else
+		//barista_sort(&data);
 		merge_sort(&data);
 	return (free_all(&data));
 }
