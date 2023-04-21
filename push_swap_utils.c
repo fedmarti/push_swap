@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:08:49 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/02/14 17:13:15 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/21 00:58:59 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	stack_len(int **stack)
 	int	len;
 
 	len = 0;
-/*	if (_stack == NULL)
-		return (len);*/
 	while (stack[len] != NULL)
 		len++;
 	return (len);
@@ -67,29 +65,27 @@ int	swap_stack(int **stack)
 /*takes the first element from stack1 and puts it at the front of stack2 */
 /*also sets such spot as null and rotates 1, then shifts b          */
 
-int	push_stack(int **stack_1, int **stack_2)
+int	push_stack(int **src, int **dest)
 {
 	int	len;
 
-	if (!*stack_1)
+	if (!*src)
 		return (1);
-	len = stack_len(stack_2);
+	len = stack_len(dest);
 	if (len)
 	{
-		stack_2[len] = *stack_1;
-		rotate_stack(stack_2, -1, len + 1);
+		dest[len] = *src;
+		rotate_stack(dest, -1, len + 1);
 	}
 	else
-		*stack_2 = *stack_1;
-	len = stack_len(stack_1);
-	rotate_stack(stack_1, 1, len);
-	stack_1[len - 1] = NULL;
+		*dest = *src;
+	len = stack_len(src);
+	rotate_stack(src, 1, len);
+	src[len - 1] = NULL;
 	return (0);
 }
 
-int	abs(int a)
+int	ft_abs(int a)
 {
-	if (a < 0)
-		a = -a;
-	return (a);
+	return ((a * (a >= 0) - (a * (a < 0))));
 }

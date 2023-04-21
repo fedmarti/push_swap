@@ -6,17 +6,17 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 02:28:00 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/02/07 16:36:19 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/21 01:21:39 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_name(int **stack, int **ausiliary, char name)
+void	push_name(int **dest, int **src, char dest_name)
 {
-	push_stack(ausiliary, stack);
+	push_stack(src, dest);
 	write(1, "p", 1);
-	write(1, &name, 1);
+	write(1, &dest_name, 1);
 	write(1, "\n", 1);
 }
 
@@ -52,7 +52,7 @@ void	solve_3(int **stack, char name)
 		else
 			swap_name(stack, name);
 	}
-	else
+	else if (**stack != 1)
 	{
 		if (*stack[1] == 1)
 			rotate_name(stack, 1, 3, name);

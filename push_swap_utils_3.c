@@ -1,61 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils_2.c                                :+:      :+:    :+:   */
+/*   push_swap_utils_3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 19:45:37 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/04/21 00:24:55 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:13:15 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdbool.h>
 
-bool	is_sorted(int **stack, int len)
+// input a returns b and vice versa
+char	opposite_name(char name)
 {
-	bool	sorted;
-	int		i;
-
-	i = 0;
-	sorted = true;
-	if (stack_len(stack) < len)
-		return (false);
-	while (i < len && sorted)
-	{
-		if (find_lowest(&(stack[i])) != 0)
-			sorted = false;
-		i++;
-	}
-	return (sorted);
+	return ('b' * ('b' - name) + 'a' * (name - 'a'));
 }
 
-int	sign(int a)
+// 1 if a, -1 if b
+int	sign_from_name(char name)
 {
-	return ((a > 0) - (a < 0));
+	return (('b' - name) - (name - 'a'));
 }
 
-int	ft_min(int a, int b)
+char	name_from_sign(int sign)
 {
-	return ((a * (a <= b)) + (b * (a > b)));
+	return ('a' * (sign > 0) + 'b' * (sign < 0));
 }
 
-int	ft_max(int a, int b)
+int	**stack_from_name(t_data *data, char name)
 {
-	return ((a * (a >= b)) + (b * (a < b)));
+	if (name == 'a')
+		return (data->stack_a);
+	if (name == 'b')
+		return (data->stack_b);
+	return (NULL);
 }
 
-bool	in(int n, int *arr, int len)
+int	abs_max(int a, int b)
 {
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		if (arr[i] == n)
-			return (true);
-		i++;
-	}
-	return (false);
+	a = ft_abs(a);
+	b = ft_abs(b);
+	return (ft_max(a, b));
 }

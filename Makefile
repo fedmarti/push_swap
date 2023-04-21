@@ -15,10 +15,15 @@ FLAGS    := -Wall -Wextra -Werror -g
 ################################################################################
 
 SRCS        :=  	push_swap.c \
+					reformat_input.c \
 					array_initiation.c \
 					rename_values.c \
+					ft_split.c \
+					ft_strlen.c \
 					push_swap_utils.c \
 					push_swap_utils_2.c \
+					push_swap_utils_3.c \
+					push_swap_utils_4.c \
 					pathfind.c \
 					pathfind_2.c \
 					pathfind_3.c \
@@ -26,12 +31,14 @@ SRCS        :=  	push_swap.c \
 					pathfind_5.c \
 					ps_moves.c \
 					ps_moves_2.c \
-					quick_sort.c \
-					merge_sort.c \
-					barista_sort.c \
-					radix_sort.c \
+					ps_moves_3.c \
 					solve_low_n.c \
-					solve_low_n_2.c
+					solve_low_n_2.c \
+					solve_5.c \
+					quickest_pair.c \
+					quickest_pair_2.c \
+					pseudo_quick_sort.c \
+					lis.c
 
 OBJS        := $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 19:58:42 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/02/07 14:51:46 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/20 20:13:03 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,19 @@ int	get_sequence_tail(int **stack, int index)
 int	find_highest_size(int **stack, int size)
 {
 	return (find_est_sign_based_size(stack, 1, size));
+}
+
+int	get_distance_sign(int **stack, int target, int goal, int sign)
+{
+	int	i;
+	int	current;
+
+	current = target;
+	i = 0;
+	while (current != goal)
+	{
+		current = adjacent(stack, current, sign);
+		i += sign;
+	}
+	return (i);
 }

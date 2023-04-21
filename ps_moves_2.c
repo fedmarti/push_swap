@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:14:32 by fedmarti          #+#    #+#             */
-/*   Updated: 2022/11/22 22:15:29 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:36:57 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,21 @@ void	rotate_both(int **stack_a, int **stack_b, int dir)
 	if (dir < 0)
 		write(1, "r", 1);
 	write(1, "rr\n", 3);
+}
+
+void	push_other(t_data *data, char name)
+{
+	if (name == 'a')
+		push_b(data->stack_b, data->stack_a);
+	else
+		push_a(data->stack_a, data->stack_b);
+}
+
+void	rotate_other(t_data *data, char name, int dir)
+{
+	int **stack;
+
+	name = opposite_name(name);
+	stack = stack_from_name(data, name);
+	rotate_name(stack, dir, stack_len(stack), name);
 }
