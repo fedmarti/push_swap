@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:50:47 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/04/20 20:36:07 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:51:17 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	adjacent_value_in_stack(int **stack, int value, int sign)
 	found = false;
 	est = *(stack[find_est_sign_based(stack, sign)]);
 	j = 1;
-	if (value *sign >= est * sign)
+	if (value * sign >= est * sign)
 		return (find_est_sign_based(stack, -sign));
 	while (!found)
 	{

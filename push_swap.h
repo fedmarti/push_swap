@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:19:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/04/21 22:49:54 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:56:17 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct stacks
 }	t_data;
 
 char	**ft_split(char *src, char separator);
-void	sorting_algorithm(t_data *data);
 int		stack_len(int **stack);
 int		rename_values(int *array, int len, int *error);
 int		rotate_stack(int **stack, int dir, int len);
@@ -78,21 +77,16 @@ int		find_of_value(int **stack, int value);
 int		previous_value_in_stack(int **stack, int value);
 int		next_value_in_stack(int	**stack, int value);
 int		adjacent_value_in_stack(int **stack, int value, int sign);
-int		get_junk_length(int **stack, int target, int direction);
 int		rotate_to_goal(int **stack, int target, int goal, char name);
 int		find_highest(int **stack);
 int		find_lowest(int **stack);
 int		find_est_sign_based(int **stack, int sign);
-int		get_sequence_length(int **stack, int index, int direction);
 int		adjacent_n(int **stack, int index, int amount, int direction);
 int		next_n(int **stack, int index, int amount);
 int		previous_n(int **stack, int index, int amount);
-bool	base_2_radix_sort(t_data *data);
-void	push_back(t_data *data);
 bool	is_sorted(int **stack, int len);
 int		sign(int a);
 int		ft_abs(int a);
-// void	quick_sort(t_data *data);
 void	quick_sort_algo(t_data *data);
 void	solve_3(int **stack, char name);
 void	swap_name(int **stack, char name);
@@ -100,8 +94,6 @@ void	push_name(int **dest, int **src, char dest_name);
 void	rotate_name(int **stack, int dir, int len, char name);
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
-void	barista_sort(t_data *data);
-void	merge_sort(t_data *data);
 int		find_est_sign_based_size(int **stack, int sign, int size);
 int		find_highest_size(int **stack, int size);
 int		find_lowest_size(int **stack, int size);
@@ -133,5 +125,6 @@ int		abs_min_signed(int a, int b);
 int		abs_max_signed(int a, int b);
 void	insertion_sort(t_data *data);
 void	solve_5(t_data *data);
+void	free_lis(int **lis);
 
 #endif

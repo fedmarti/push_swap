@@ -35,12 +35,38 @@ SRCS        :=  	push_swap.c \
 					solve_low_n.c \
 					solve_low_n_2.c \
 					solve_5.c \
+					solve_5_2.c \
 					quickest_pair.c \
 					quickest_pair_2.c \
 					pseudo_quick_sort.c \
+					pseudo_quick_sort_utils.c \
+					chunk_list_utils.c \
+					chunk_list_utils_2.c \
+					chunk_list_utils_3.c \
+					chunk_list_utils_4.c \
+					insertion_sort.c \
 					lis.c
 
+B_SRCS		:= 		get_next_line.c \
+					get_next_line_utils.c \
+					checker.c \
+					checker_2.c \
+					push_swap_utils.c \
+					push_swap_utils_2.c \
+					push_swap_utils_3.c \
+					push_swap_utils_4.c \
+					reformat_input.c \
+					array_initiation.c \
+					rename_values.c \
+					ft_split.c \
+					ft_strlen.c \
+					pathfind.c \
+					pathfind_3.c \
+					solve_low_n.c 
+
 OBJS        := $(SRCS:.c=.o)
+
+B_OBJS		:= $(B_SRCS:.c=.o)
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
@@ -65,7 +91,8 @@ ${NAME}:	${OBJS}
 
 all:		${NAME}
 
-bonus:		all
+bonus:		re ${B_OBJS}
+			${CC} ${FLAGS} -o checker ${B_OBJS}
 
 clean:
 			@ ${RM} *.o */*.o */*/*.o
@@ -73,8 +100,9 @@ clean:
 
 fclean:		clean
 			@ ${RM} ${NAME}
+			@ ${RM} ./checker
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:56:28 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/04/21 20:22:02 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:49:39 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**reformat_input(char **argv, int *argc)
 	char	**split;
 	int		mat_len;
 
-	if (*argc > 2)
+	if (*argc != 2)
 		return (argv);
 	arg_zero = argv[0];
 	split = ft_split(argv[1], ' ');

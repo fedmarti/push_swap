@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:35:06 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/01/26 17:40:51 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:47:30 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,19 @@ int	previous_n(int **stack, int index, int amount)
 	return (adjacent_n(stack, index, amount, -1));
 }
 
-int get_junk_extreme(int **stack, int index, int direction)
+int	rotate_to_goal(int **stack, int target, int goal, char name)
 {
-	int	adjacent_i;
+	int	dir;
+	int	dist;
+	int	len;
 
-	adjacent_i = adjacent(stack, index, direction);
-	while (adjacent_i != adjacent_value_in_stack(stack, index, direction))
+	len = stack_len(stack);
+	dist = get_distance(stack, target, goal);
+	dir = sign(dist);
+	while (dist)
 	{
-		index = adjacent_i;
-		adjacent_i = adjacent(stack, index, direction);
+		rotate_name(stack, dir, len, name);
+		dist -= dir;
 	}
-	return (index);
+	return (0);
 }

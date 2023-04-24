@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_low_n.c                                      :+:      :+:    :+:   */
+/*   solve_low_n_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 02:28:00 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/02/07 16:36:19 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:33:57 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,9 @@ void	solve_3_any(int **stack, char name)
 		swap_name(stack, name);
 }
 
-/*void	solve_2_any(int	**stack, char name)
-{
-	int	temp;
-
-	temp = 1 - ((name - 'a') * 2);
-	if (!stack[1])
-		return ;
-	if (*stack[0] > *stack[1])
-		swap_name(stack, name);
-}*/
-
 /*321- -> swap, rotate, swap, reverse_rotate, swap.
- -312- -> swap, rotate, swap, reverse_rotate. -231- -> rotate, swap, reverse_rotate, swap.
+ -312- -> swap, rotate, swap, reverse_rotate. -231- ->
+ 	 rotate, swap, reverse_rotate, swap.
  -132- -> rotate, swap, reverse_rotate.
  -213- -> swap
  -123-  -> ...*/

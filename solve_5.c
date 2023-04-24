@@ -6,11 +6,14 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 21:45:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/04/22 00:29:13 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:53:01 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	norm_bs_2(t_data *data, int **lis);
+int		**norminette_bullshit(int **lis, t_data *data, int *targets, int j);
 
 void	free_lis(int **lis)
 {
@@ -38,14 +41,14 @@ int	**get_longest_lis(t_data *data)
 	int	i;
 	int	len;
 
-	i = 1;
+	i = 0;
 	len = stack_len(data->stack_a);
 	lis = get_lis(data->stack_a, 0, len);
 	if (!lis)
 		return (NULL);
-	while (i < len && **lis < len)
+	while (i++ < len)
 	{
-		temp = get_lis(data->stack_a, i, len);
+		temp = get_lis(data->stack_a, 0, len);
 		if (!temp || **temp > **lis)
 		{
 			free_lis(lis);
@@ -55,7 +58,7 @@ int	**get_longest_lis(t_data *data)
 			free_lis(temp);
 		if (!lis)
 			return (NULL);
-		i++;
+		rotate_stack(data->stack_a, 1, len);
 	}
 	return (lis);
 }
@@ -85,9 +88,6 @@ void	get_targets(int *arr, int **lis, int **stack)
 	}
 }
 
-
-
-
 void	solve_5(t_data *data)
 {
 	int	**lis;
@@ -96,7 +96,6 @@ void	solve_5(t_data *data)
 	int	j;
 
 	lis = get_longest_lis(data);
-	// lis = get_lis(data->stack_a, 0, data->tot_len);
 	if (!lis)
 		return ;
 	get_targets(targets, lis, data->stack_a);
@@ -106,23 +105,13 @@ void	solve_5(t_data *data)
 		j = 0;
 		while (targets[i] != -1)
 		{
-			if (ft_abs(get_distance(data->stack_a, targets[j], 0))> ft_abs(get_distance(data->stack_a, targets[i], 0)))
+			if (ft_abs(get_distance(data->stack_a, targets[j], 0)) \
+			> ft_abs(get_distance(data->stack_a, targets[i], 0)))
 				j = i ;
 			i++;
 		}
-		rotate_to_goal(data->stack_a, targets[j], 0, 'a');
-		push_b(data->stack_b, data->stack_a);
-		free(lis);
 		i = 0;
-		lis = get_longest_lis(data);
-		get_targets(targets, lis, data->stack_a);
+		lis = norminette_bullshit(lis, data, targets, j);
 	}
-	if (previous_value_in_stack(data->stack_a, **data->stack_a) == 1)
-		swap_a(data->stack_a);
-	if (*data->stack_b)
-		insertion_sort(data);
-	if (**lis == data->tot_len)
-		rotate_to_goal(data->stack_a, find_lowest(data->stack_a), 0, 'a');
-	free_lis(lis);
-
+	norm_bs_2(data, lis);
 }

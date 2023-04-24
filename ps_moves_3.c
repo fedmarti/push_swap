@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 18:11:03 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/04/20 20:59:09 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:50:50 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,3 @@ void	syncronized_rotation(t_data *data, int target_a, int target_b)
 	rotate_to_goal_flag(data, find_of_value(data->stack_a, target_val), 0, 1);
 	rotate_to_goal_flag(data, find_highest(data->stack_b), 0, -2);
 }
-
-

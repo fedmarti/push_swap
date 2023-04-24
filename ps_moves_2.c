@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:14:32 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/03/30 19:36:57 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:50:33 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	push_other(t_data *data, char name)
 
 void	rotate_other(t_data *data, char name, int dir)
 {
-	int **stack;
+	int	**stack;
 
 	name = opposite_name(name);
 	stack = stack_from_name(data, name);

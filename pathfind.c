@@ -6,12 +6,11 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 15:02:16 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/04/20 21:05:06 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:50:09 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	next(int **stack, int index)
 {

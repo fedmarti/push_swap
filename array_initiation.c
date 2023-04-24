@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:16:02 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/04/21 21:21:18 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:29:05 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,23 @@ static long	ft_atol(const char *str)
 static int	is_number(char *str)
 {
 	int	phase;
+	int	found_n;
 
 	phase = 0;
-
+	found_n = 0;
 	while (*str)
 	{
 		if (!phase && (*str != '-' && *str != '+' && *str != ' '))
 			phase++;
+		if (*str >= '0' && *str <= '9')
+			found_n = 1;
 		if (phase && (*str < '0' || *str > '9'))
 			return (0);
 		if (!phase && (*str == '-' || *str == '+'))
 			phase++;
 		str++;
 	}
-	return (1);
+	return (found_n);
 }
 
 /*transfers the content of argv into the array, converting it from char to int*/

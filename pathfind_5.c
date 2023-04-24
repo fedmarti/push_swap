@@ -6,13 +6,13 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 19:58:42 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/04/20 20:13:03 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:49:40 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int get_sequence_extreme(int **stack, int index, int direction)
+int	get_sequence_extreme(int **stack, int index, int direction)
 {
 	int	adjacent_i;
 
@@ -25,7 +25,7 @@ int get_sequence_extreme(int **stack, int index, int direction)
 	return (index);
 }
 
-int get_sequence_head(int **stack, int index)
+int	get_sequence_head(int **stack, int index)
 {
 	return (get_sequence_extreme(stack, index, -1));
 }
